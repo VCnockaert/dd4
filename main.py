@@ -1,10 +1,14 @@
+# ----------------------
+# Written by Vincent Cnockaert as a submission to the Decode Demcon Challenge 4 (https://bit.ly/3yv0RmD).
+# ----------------------
+
 import random
 import sys
 
 # default settings
 file_in = "in.txt"
 file_out = ""
-separator = " "      # can be added as additional argument
+separator = " "
 min_stages = 1
 mode = "c"
 modes = {"c": "concentrate", "d": "distribute", "r": "random"}
@@ -27,7 +31,7 @@ while i < len(sys.argv):
             print("   -r        Set schedule mode to 'random'.")
             print("   -m N      Set minimum stages to N. (Default: 1)")
             print("   -i IN     Read input from file IN. (Default: in.txt)")
-            print("   -o OUT    Write output to file OUT. (No output file by Default)")
+            print("   -o OUT    Write output to file OUT. (No output file by default)")
             print("   -v        Print general info.")
             print("   -p        Print stage overview.")
             print("   -s        Print stage occupancy.")
@@ -95,20 +99,20 @@ for s in range(len(shows)):
         print(f"Could not parse value to integer at line {s + 1} in input file '{file_in}': {shows[s][1]} and {shows[s][2]}")
         exit()
     if shows[s][1] > shows[s][2]:
-        print(f"Provided start hour is after end hour at line {s + 1} in input file '{file_in}': {shows[s][1]} > {shows[s][2]}")
+        print(f"Provided starting time slot is after ending time slot at line {s + 1} in input file '{file_in}': {shows[s][1]} > {shows[s][2]}")
         exit()
     if shows[s][1] < 1:
-        print(f"Provided hours should be greater then zero. Line {s + 1} in input file '{file_in}': {shows[s][1]} and {shows[s][2]}")
+        print(f"Provided time slots should be greater then zero. Line {s + 1} in input file '{file_in}': {shows[s][1]} and {shows[s][2]}")
         exit()
 
 # --- schedule algoritm ---
 
-# sort shows based on start time and modify intrnal order
+# sort shows based on starting time slot and modify internal order
 shows = [[s[i] for i in [1, 2, 0]] for s in shows]
 shows.sort()
 
-# index 0: start hour
-# index 1: end hour
+# index 0: starting time slot
+# index 1: ending time slot
 # index 2: show nane
 
 # distribute shows over stages, modify stage order list based on mode
@@ -144,7 +148,7 @@ if info:
     print(f"shows: {len(shows)}")
     print(f"minimum stages: {min_stages}")
     print(f"mode: {modes[mode]}")
-    print(f"effective stages: {len(stages)}")
+    print(f"used stages: {len(stages)}")
     if len(file_out): print(f"output file: {file_out}")
     print("")
 
@@ -194,3 +198,4 @@ if len(file_out) > 0:
         i = i + 1
     with open(file_out, 'w') as file:
         file.writelines(buff)
+
