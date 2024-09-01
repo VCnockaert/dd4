@@ -2,11 +2,11 @@
 
 ## Info
 
-This program was written as a submission to the [Decode Demcon Challenge #4](https://bit.ly/3yv0RmD). The goal was to create a schedule program which takes a list of shows with their corresponding starting and ending time slots and generates a schedule of these shows on multiple stages in such a way that shows dont overlap.
+This program was written as a submission to the [Decode Demcon Challenge #4](https://bit.ly/3yv0RmD). The goal was to create a schedule program which takes a list of shows, with their corresponding starting and ending time slots, and generates a schedule of these shows on multiple stages in such a way that shows dont overlap.
 
 ## Usage
 
-The festival schedule generator is written using Python 3.11.9. The program reads in an ASCII text file containing the starting and endingtime slots of an arbitrary amount of shows. These shows are then scheduled on as many different stages as required. The format of the input file is the same as inducated in the challenge description:
+The festival schedule generator is written using Python 3.11.9. The program reads in an ASCII text file containing the starting and ending time slots of an arbitrary amount of shows. These shows are then scheduled on as many different stages as required. The format of the input file is the same as inducated in the challenge description:
 
 ```
 show_1 29 33
@@ -58,8 +58,8 @@ If this argument is omitted, the default input file name `in.txt` will be used.
 The arguments `-v`, `-p` and `-s` can be used to control what information is printed to the command line or terminal. By default, no output is provided. Following information can be printed:
 
  - General info (`-v`): Provides information such as mode, amount of shows and amount of stages required.
- - Stage overview (`-p`): Prints all stages, which shows play on them and their corresponding stating and ending time slots.
- - Stage occupancy (`-s`): Generates a visual overview of all stages indicating at which time slots a show is scheduled and at which time slots no show is scheduled.
+ - Stage overview (`-p`): Prints all stages, which shows play on them and their corresponding starting and ending time slots.
+ - Stage occupancy (`-s`): Generates a visual overview of all stages indicating at which time slots a show is scheduled and at which time slots the stage is not in use.
 
 All possible output information can thus be provided by:
 
@@ -93,7 +93,7 @@ The `-m` argument can be used to provide the minimum number of stages that shoul
 
 ## Program structure
 
-The program consists out of three parts, the input handler, the algoritm itself and the output handler. The schedule algoritm only consists out of a small fraction of the program, only 32 out of the total 201 lines of Python code. The majority of lines regulates input and output handling.
+The program consists out of three parts, the input handler, the algoritm itself and the output handler. The schedule algoritm only consists out of a small fraction of the program, only 32 out of the total 201 lines of Python code. The majority of code lines thus regulates input and output handling.
 
 ## The schedule algoritm
 
@@ -101,7 +101,7 @@ First, all shows are sorted, based on their starting time slot. Next, the algori
 
 ### Complexity
 
-When the amount of shows is very large, in comparison to the amount of required stages, the complexity of the program lays in sorting the shows based on their starting time slot. This is done using the build-in `sort()` Python function which has ** nlog(n)**  time complexity. This is thus also the complexity of the scheduling algoritm for large input data sets.
+When the amount of shows is very large, in comparison to the amount of required stages, the complexity of the program lays in sorting the shows based on their starting time slot. This is done using the build-in `sort()` Python function which has __nlog(n)__ time complexity. This is thus also the time complexity of the scheduling algoritm for large input data sets.
 
 ## Contact
 
